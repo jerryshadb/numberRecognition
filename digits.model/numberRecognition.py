@@ -23,7 +23,7 @@ model.add(tf.keras.layers.Dense(units = 10, activation = tf.nn.softmax)) #Output
 #Compile and optimize model. 
 model.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metrics = ['accuracy'])
 
-#Train the model. 
+#Train the model. epochs = how many times do we show the model the same data.
 model.fit(xTrain, yTrain, epochs = 3)
 
 #Evaluate the model
@@ -40,10 +40,11 @@ print(f'Model loss: {loss}')
 
 #Load the custom images
 #feel free to use your own as long as they're 28x28 px
+
 imgNumb = 1
 while os.path.isfile(f'ml/numberRecognition/digits.model/digits/digit{imgNumb}.png'):
 
-    img = cv.imread(f'ml/numberRecognition/digits/digit{imgNumb}.png')[:,:,0]
+    img = cv.imread(f'ml/numberRecognition/digits.model/digits/digit{imgNumb}.png')[:, :, 0]
     img = np.invert(np.array([img]))
     prediction = model.predict(img)
     print(f'The number is most probably: {np.argmax(prediction)}')
