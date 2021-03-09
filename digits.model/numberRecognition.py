@@ -26,7 +26,7 @@ model.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metr
 
 #Train the model. epochs = how many times the same data is shown to the model
 model.fit(xTrain, yTrain, epochs = 3)
-#useless comment
+
 #Evaluate the model
 loss, accuracy = model.evaluate(xTest, yTest)
 print(f'Model accuracy: {accuracy}')
