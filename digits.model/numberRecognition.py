@@ -9,12 +9,13 @@ mnist = tf.keras.datasets.mnist
 (xTrain, yTrain), (xTest, yTest) = mnist.load_data()
 
 #Normalize data, in other words make its' length 1 scaling it down to make it easier to compute
+#data points range from 0 to 1. 
 xTrain = tf.keras.utils.normalize(xTrain, axis = 1)
 xTest = tf.keras.utils.normalize(xTest, axis = 1)
 
 #Define neural network, add input layer add 2 hidden layers and an output layer.
 model = tf.keras.models.Sequential()
-model.add(tf.keras.layers.Flatten(input_shape = (28, 28)))             #Flatten = 1D -layer. Essencially the input -layer
+model.add(tf.keras.layers.Flatten(input_shape = (28, 28)))             #Flatten = 1D -layer. Essentially the input -layer
 model.add(tf.keras.layers.Dense(units = 128, activation = tf.nn.relu)) #Dense = the neurons are all connected to the previous as well as next layer
 model.add(tf.keras.layers.Dense(units = 128, activation = tf.nn.relu)) #Units = amount of neurons = the more sophisticated the layer. 
 model.add(tf.keras.layers.Dense(units = 10, activation = tf.nn.softmax)) #Output -layer. units = 10 for the 10 digits. Softmax takes all the outputs, and scales the values to one value 
@@ -23,7 +24,7 @@ model.add(tf.keras.layers.Dense(units = 10, activation = tf.nn.softmax)) #Output
 #Compile and optimize model. 
 model.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metrics = ['accuracy'])
 
-#Train the model. epochs = how many times do we show the model the same data.
+#Train the model. epochs = how many times the same data is shown to the model
 model.fit(xTrain, yTrain, epochs = 3)
 
 #Evaluate the model
